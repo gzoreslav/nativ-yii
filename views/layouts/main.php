@@ -37,6 +37,8 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Головна', 'url' => ['/site/index']],
+            ['label' => 'Продукція', 'url' => ['/site/products']],
+            ['label' => 'Нові надходження', 'url' => ['/site/newproducts']],
             ['label' => 'Про нас', 'url' => ['/site/about']],
             ['label' => 'Контакти', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
@@ -57,10 +59,39 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+        <div class="row">
+            <div class="col-lg-2">
+                <?php
+                $this->widget('zii.widgets.CMenu',array(
+                    'id' => 'sideMenu',  
+                    'items' => [
+                        ['label' => 'Головна', 'url' => ['/site/index']],
+                        ['label' => 'Продукція', 'url' => ['/site/products']],
+                        ['label' => 'Нові надходження', 'url' => ['/site/newproducts']],
+                        ['label' => 'Про нас', 'url' => ['/site/about']],
+                        ['label' => 'Контакти', 'url' => ['/site/contact']],
+                        Yii::$app->user->isGuest ? (
+                            ['label' => 'Вхід', 'url' => ['/site/login']]
+                        ) : (
+                            '<li>'
+                            . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
+                            . Html::submitButton(
+                                'Вихід (' . Yii::$app->user->identity->username . ')',
+                                ['class' => 'btn btn-link']
+                            )
+                            . Html::endForm()
+                            . '</li>'
+                        )
+                    ],
+                ));
+                ?>
+            </div>
+            <div class="col-lg-10">
+                <?= Breadcrumbs::widget([
+                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                ]) ?>
+                <?= $content ?>
+            </div>
     </div>
 </div>
 
