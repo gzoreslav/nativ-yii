@@ -6,8 +6,12 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\widgets\LinkPager;
+use app\models\Category;
+
 
 AppAsset::register($this);
 ?>
@@ -27,7 +31,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Nativ',
+        'brandLabel' => 'HBM NATIV - Деревообробні верстати',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,11 +40,6 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'Головна', 'url' => ['/site/index']],
-            ['label' => 'Продукція', 'url' => ['/site/products']],
-            ['label' => 'Нові надходження', 'url' => ['/site/newproducts']],
-            ['label' => 'Про нас', 'url' => ['/site/about']],
-            ['label' => 'Контакти', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Вхід', 'url' => ['/site/login']]
             ) : (
@@ -60,46 +59,65 @@ AppAsset::register($this);
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <?php
-                $this->widget('zii.widgets.CMenu',array(
-                    'id' => 'sideMenu',  
-                    'items' => [
-                        ['label' => 'Головна', 'url' => ['/site/index']],
-                        ['label' => 'Продукція', 'url' => ['/site/products']],
-                        ['label' => 'Нові надходження', 'url' => ['/site/newproducts']],
-                        ['label' => 'Про нас', 'url' => ['/site/about']],
-                        ['label' => 'Контакти', 'url' => ['/site/contact']],
-                        Yii::$app->user->isGuest ? (
-                            ['label' => 'Вхід', 'url' => ['/site/login']]
-                        ) : (
-                            '<li>'
-                            . Html::beginForm(['/site/logout'], 'post', ['class' => 'navbar-form'])
-                            . Html::submitButton(
-                                'Вихід (' . Yii::$app->user->identity->username . ')',
-                                ['class' => 'btn btn-link']
-                            )
-                            . Html::endForm()
-                            . '</li>'
-                        )
-                    ],
-                ));
+                $items = [
+                    ['label' => 'Головна', 'url' => ['/site/index']],
+                    ['label' => 'Контакти', 'url' => ['/site/contact']],
+                ];
+                echo Menu::widget([
+                    'options' => ['class' => 'nav nav-pills nav-stacked nav-main'],
+                    'items' => $items
+                ]);
+                ?>
+                <hr/>
+                <?php if (!Yii::$app->user->isGuest) { 
+                    $items = [
+                        ['label' => 'Адміністрування', 'url' => ['/site/admin']]
+                    ];
+                    echo Menu::widget([
+                        'options' => ['class' => 'nav nav-pills nav-stacked nav-admin'],
+                        'items' => $items
+                    ]);
+                } ?>
+                <h3>Ми пропонуємо</h3>
+                <?php
+                $items = [];
+                $categoriesCount = Category::find()->count();
+                $categories = Category::find()
+                    ->orderBy('order_index, name')
+                    ->limit(8)
+                    ->all();
+                foreach ($categories as $category):
+                    array_push($items, [
+                        'label' => Html::encode("{$category->name}"), 
+                        'url' => ['/nativ/category/view', 'id' => $category->id],
+                    ]); 
+                endforeach;
+                array_push($items, ['label' => '... всі категорії <span class="badge">'.$categoriesCount.'</span>', 'url' => ['/nativ/category/index']]);
+                echo Menu::widget([
+                    'encodeLabels' => false,
+                    'options' => ['class' => 'nav nav-pills nav-stacked nav-products'],
+                    'items' => $items
+                ]);
                 ?>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-9">
                 <?= Breadcrumbs::widget([
+                    'homeLink' => ['label' => 'Головна', 'url' => Yii::$app->getHomeUrl()],
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
                 <?= $content ?>
             </div>
+        </div>
     </div>
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Nativ <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-left">&copy; HBM NATIV, <?= date('Y') ?></p>
+        <p class="pull-right"><span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (98) 123-25-65<br/>
+        <span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (95) 091-98-59</p>
     </div>
 </footer>
 

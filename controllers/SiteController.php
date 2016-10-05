@@ -122,4 +122,14 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    /**
+     * Displays admin page.
+     *
+     * @return string
+     */
+    public function actionAdmin()
+    {
+        return $this->render('admin');
+    }
 }

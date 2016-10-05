@@ -2,50 +2,44 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'Головна - Nativ';
+$this->title = 'Головна - HBM NATIV';
 ?>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Вітаємо на нашому сайті!</h1>
-
-        <p class="lead">Сайт знаходиться в розробці</p>
-
-    </div>
 
     <div class="body-content">
 
         <div class="row">
-            <div class="col-lg-4">
-                <h2>Heading</h2>
+            <div class="col-lg-8 main-content">
+                <img class="image-portfolio" src="/basic/static/images/default_header.jpg">
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
+                <p><strong>HBM NATIV</strong> - це та компанія, яка здійснює поставку деревообробних станків з Німеччини.</p>
 
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/doc/">Yii Documentation &raquo;</a></p>
+                <p>Ми уже рік успішно працюємо на ринку України.</p>
+
+                <p>Всі верстати завжди є в наявності. Верстати попередньо проходять техогляд при одержанні, щоб потім не виникало труднощів з експлуатацією. Є можливість приїхати і оцінити зовнішній вигляд та ступінь вживаності станка.</p>
+
+                <p>Ви обов&apos;язково підберете той деревообробний станок, який Вам потрібен.</p>
+
+                <p>Ми також займаємось:</p>
+                <ul>
+                    <li>заточкою і виготовленням профільних ножів;</li>
+                    <li>доставкою нових та б/у запчастини на замовлення;</li>
+                    <li>реалізацією вагонки для саун.</li>
+                </ul>
             </div>
             <div class="col-lg-4">
-                <h2>Heading</h2>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Наші контакти</div>
+                    <div class="panel-body">
+                        <p>Україна, Івано-Франківська обл., м.Долина, вул. Б.Хмельницького 126</p>
+                        <p>тел: +380 (98) 123-25-65</p>
+                        <p>тел: +380 (95) 091-98-59</p>
+                        <p>email: <a href="mailto:ivan19820000@gmail.com">ivan19820000@gmail.com</a></p> 
+                    </div>
+                </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/forum/">Yii Forum &raquo;</a></p>
             </div>
-            <div class="col-lg-4">
-                <h2>Heading</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur.</p>
-
-                <p><a class="btn btn-default" href="http://www.yiiframework.com/extensions/">Yii Extensions &raquo;</a></p>
-            </div>
         </div>
 
     </div>
