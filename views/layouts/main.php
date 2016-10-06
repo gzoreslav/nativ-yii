@@ -37,7 +37,9 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
+    echo '<p style="float: right; color: #fff; padding-top: 15px"><span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (98) 123-25-65<br/>
+        <span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (95) 091-98-59</p>';
+    /*echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             Yii::$app->user->isGuest ? (
@@ -53,7 +55,7 @@ AppAsset::register($this);
                 . '</li>'
             )
         ],
-    ]);
+    ]);*/
     NavBar::end();
     ?>
 
@@ -116,8 +118,30 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; HBM NATIV, <?= date('Y') ?></p>
-        <p class="pull-right"><span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (98) 123-25-65<br/>
-        <span class="glyphicon glyphicon glyphicon-phone-alt" aria-hidden="true"></span>&nbsp;+380 (95) 091-98-59</p>
+        <div class="pull-right" style="margin-left: 20px;">
+            <a href='http://freehost.com.ua' title='Український хостинг: UNIX & WINDOWS'  rel='nofollow'>
+                <script language="JavaScript">
+                <!--
+                r=Math.random();
+                ref=document.referrer;x=screen.width;y=screen.height;
+                bps=screen.colorDepth;lng=navigator.systemLanguage;
+                document.write("<img src='http://tools.freehost.com.ua/cnt.php?&ct=1&cid=5908&");
+                document.write("ref="+escape(ref)+"&x="+x+"&y="+y+"&bps="+bps+"&lng="+lng+"&r="+r+"' ");
+                document.write("border=0>");
+                //-->
+                </script>
+            </a>
+        </div>
+        <?php if (Yii::$app->user->isGuest) { ?>
+            <a href="index.php?r=site%2Flogin" style="margin-right: 20px; font-size: 10px; color: #bbb; float: right">
+                Вхід
+            </a>
+        <?php } else { ?>
+            <?= Html::a('Вихід ('.Yii::$app->user->identity->username.')', ['site/logout'], [
+                'data' => ['method' => 'post'],
+                'style' => 'margin-right: 20px; font-size: 10px; color: #bbb; float: right'
+            ]) ?>
+        <?php } ?>
     </div>
 </footer>
 
